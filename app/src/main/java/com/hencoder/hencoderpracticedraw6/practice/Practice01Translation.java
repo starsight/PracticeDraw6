@@ -12,6 +12,7 @@ import android.view.ViewOutlineProvider;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.hencoder.hencoderpracticedraw6.R;
 
@@ -21,17 +22,21 @@ import static com.hencoder.hencoderpracticedraw6.Utils.dpToPixel;
 public class Practice01Translation extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
+    Context mContext;
 
     public Practice01Translation(Context context) {
         super(context);
+        mContext = context;
     }
 
     public Practice01Translation(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
     }
 
     public Practice01Translation(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        mContext = context;
     }
 
     @Override
@@ -42,13 +47,22 @@ public class Practice01Translation extends RelativeLayout {
         imageView = (ImageView) findViewById(R.id.imageView);
         if (SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             // 给音乐图标加上合适的阴影
-            imageView.setOutlineProvider(new MusicOutlineProvider());
+            //imageView.setOutlineProvider(new MusicOutlineProvider());
         }
 
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
                 // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
+                imageView.animate().translationXBy(100);
+            }
+        });
+
+        imageView.setOnClickListener(new OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext,"hh",Toast.LENGTH_SHORT).show();
             }
         });
     }
